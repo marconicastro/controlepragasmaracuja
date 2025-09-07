@@ -1,40 +1,42 @@
 // src/components/GoogleTagManager.tsx
-'use client'
+'use client';
 
-import { usePathname, useSearchParams } from 'next/navigation'
-import Script from 'next/script'
-import { useEffect } from 'react'
+import { usePathname, useSearchParams } from 'next/navigation';
+import Script from 'next/script';
+import { useEffect } from 'react';
 
 // Define a interface global do Window para incluir o dataLayer
 declare global {
   interface Window {
-    dataLayer: any[]
+    dataLayer: any[];
   }
 }
 
 // Função que envia o evento page_view para a camada de dados
 const pageview = (url: string) => {
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: 'page_view',
-    page: url,
-  })
-}
+  if (typeof window !== 'undefined') {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'page_view',
+      page: url,
+    });
+  }
+};
 
 const GoogleTagManager = ({ gtmId }: { gtmId: string }) => {
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   // Dispara o evento page_view na carga inicial e em cada mudança de rota
   useEffect(() => {
     if (gtmId) {
       const url = pathname + (searchParams.toString() ? '?' + searchParams.toString() : '');
-      pageview(url)
+      pageview(url);
     }
-  }, [pathname, searchParams, gtmId])
+  }, [pathname, searchParams, gtmId]);
 
   if (!gtmId) {
-    return null
+    return null;
   }
 
   return (
@@ -63,7 +65,7 @@ const GoogleTagManager = ({ gtmId }: { gtmId: string }) => {
         ></iframe>
       </noscript>
     </>
-   )
-}
+   );
+};
 
 export default GoogleTagManager;
