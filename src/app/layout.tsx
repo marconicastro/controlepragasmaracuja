@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
+import { Suspense } from "react";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import GoogleTagManager from "@/components/GoogleTagManager";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,29 +35,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <head>
-        {/* SCRIPT PARA RASTREAMENTO DE UTMS */}
-        <Script
-          src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-          data-utmify-prevent-subids
-          async
-          defer
-        />
 
-        {/* SCRIPT DO PIXEL DA UTMIFY */}
-        <Script
-          id="utmify-pixel-script"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.pixelId = "68aef5df7fe9644ed8977c6d";
-              var a = document.createElement("script");
-              a.setAttribute("async", "");
-              a.setAttribute("defer", "");
-              a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
-              document.head.appendChild(a);
-            `,
-          }}
-          strategy="afterInteractive"
-        />
 
         {/* SCRIPT DE PROTEÇÃO CONTRA CÓPIA E SELEÇÃO */}
         <Script
@@ -418,6 +398,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
+        <Suspense fallback={null}>
+          <GoogleTagManager gtmId="GTM-MZBKP24M" />
+        </Suspense>
         {children}
         <Toaster />
       </body>

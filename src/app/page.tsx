@@ -28,7 +28,49 @@ function App() {
     return () => clearInterval(timer);
   }, []);
 
+  // Enviar evento view_content após 15 segundos
+  useEffect(() => {
+    const viewContentTimer = setTimeout(() => {
+      if (typeof window !== 'undefined' && window.dataLayer) {
+        window.dataLayer.push({
+          event: 'view_content',
+          ecommerce: {
+            currency: 'BRL',
+            value: 39.90,
+            items: [{
+              item_id: '6080425',
+              item_name: 'Sistema de Controle de Trips - Maracujá',
+              category: 'Agricultura',
+              quantity: 1,
+              price: 39.90
+            }]
+          }
+        });
+      }
+    }, 15000); // 15 segundos
+
+    return () => clearTimeout(viewContentTimer);
+  }, []);
+
   const scrollToCheckout = () => {
+    // Enviar evento initiate_checkout para o dataLayer
+    if (typeof window !== 'undefined' && window.dataLayer) {
+      window.dataLayer.push({
+        event: 'initiate_checkout',
+        ecommerce: {
+          currency: 'BRL',
+          value: 39.90,
+          items: [{
+            item_id: '6080425',
+            item_name: 'Sistema de Controle de Trips - Maracujá',
+            category: 'Agricultura',
+            quantity: 1,
+            price: 39.90
+          }]
+        }
+      });
+    }
+    
     document.getElementById('checkout').scrollIntoView({ behavior: 'smooth' });
   };
 
