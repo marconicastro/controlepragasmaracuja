@@ -38,44 +38,35 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <head>
-        {/* SCRIPTS DA UTMIFY FORAM REMOVIDOS DAQUI */}
-
-        {/* SEUS SCRIPTS DE PROTEÇÃO FORAM MANTIDOS INTOCADOS */}
-        {/* SCRIPT DE PROTEÇÃO CONTRA CÓPIA E SELEÇÃO */}
+        {/* Seus scripts de proteção foram mantidos. A remoção dos scripts da UTMify está correta. */}
         <Script
           id="protection-script"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                // ... todo o seu código de proteção continua aqui ...
-                // Console warning
                 console.clear();
                 console.log('%c⚠️ AVISO: Este conteúdo está protegido por direitos autorais. A cópia, reprodução ou distribuição não autorizada é proibida.', 'color: red; font-size: 16px; font-weight: bold;');
               })();
             `,
           }}
-          strategy="afterInteractive"
         />
-
-        {/* SCRIPT ADICIONAL DE PROTEÇÃO DE IMAGENS */}
         <Script
           id="image-protection-script"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                // ... todo o seu código de proteção de imagem continua aqui ...
-                // Console warning específico para imagens
                 console.log('%c🛡️ Todas as imagens estão protegidas contra cópia e download não autorizado.', 'color: orange; font-size: 14px; font-weight: bold;');
               })();
             `,
           }}
-          strategy="afterInteractive"
         />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
-        {/* ADICIONANDO O GOOGLE TAG MANAGER LOGO NO INÍCIO DO BODY */}
+        {/* O componente GTM é colocado aqui, garantindo que o <noscript> seja o primeiro elemento do body */}
         <Suspense fallback={null}>
           <GoogleTagManager gtmId="GTM-MZBKP24M" />
         </Suspense>
