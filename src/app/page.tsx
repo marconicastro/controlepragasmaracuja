@@ -53,6 +53,10 @@ function App() {
   }, []);
 
   const scrollToCheckout = () => {
+    document.getElementById('checkout').scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleHotmartCheckout = () => {
     // Enviar evento initiate_checkout para o dataLayer
     if (typeof window !== 'undefined' && window.dataLayer) {
       window.dataLayer.push({
@@ -70,10 +74,7 @@ function App() {
         }
       });
     }
-    
-    document.getElementById('checkout').scrollIntoView({ behavior: 'smooth' });
-  };
-
+    // Redirecionar pa<Button onClick={handleHotmartCheckout}
   return (
     <div className="min-h-screen bg-white">
       {/* Barra de Urgência - Otimizada para Mobile */}
