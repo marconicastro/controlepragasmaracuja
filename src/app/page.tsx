@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, X, AlertTriangle, Clock, Shield, Star, Rocket, Phone, Mail, TrendingUp, Target, Zap, Award, Users, DollarSign, ArrowRight, PlayCircle, Download } from 'lucide-react';
 
-function App() {
+export default function App() {
   const [timeLeft, setTimeLeft] = useState({
     hours: 0,
     minutes: 47,
@@ -699,4 +699,3 @@ function App() {
   );
 }
 
-export default App;
