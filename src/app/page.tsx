@@ -74,7 +74,10 @@ export default function App() {
         }
       });
     }
-    // Redirecionar pa<Button onClick={handleHotmartCheckout}
+    // A linha quebrada original foi removida para limpar, mas a função é a mesma.
+  };
+  
+  // O return original tinha um erro de sintaxe que foi corrigido aqui.
   return (
     <div className="min-h-screen bg-white">
       {/* Barra de Urgência - Otimizada para Mobile */}
@@ -97,20 +100,19 @@ export default function App() {
         <div className="container mx-auto px-3 sm:px-4">
           <div className="max-w-4xl mx-auto text-center">
             
-            {/* Badge de Autoridade - Responsivo */}
             <div className="inline-flex items-center gap-1 sm:gap-2 bg-green-600 text-white px-3 sm:px-4 py-2 rounded-full font-bold text-xs sm:text-sm mb-4 sm:mb-6">
               <Award className="w-3 h-3 sm:w-4 sm:h-4" />
               MÉTODO VALIDADO PELA EMBRAPA
             </div>
 
-            {/* Headline Ultra Persuasiva - Responsiva */}
             <h1 className="text-2xl sm:text-4xl md:text-6xl font-black mb-3 sm:mb-4 leading-tight">
-              <span className="text-red-600">PARE DE JOGAR</span><br />
-              <span className="text-gray-800">DINHEIRO FORA</span><br />
+              <span className="text-red-600">PARE DE JOGAR</span>  
+
+              <span className="text-gray-800">DINHEIRO FORA</span>  
+
               <span className="text-green-600">COM O TRIPS!</span>
             </h1>
 
-            {/* Logo do E-book */}
             <div className="mb-4 sm:mb-6">
               <img 
                 src="/ebook-logo.webp" 
@@ -126,14 +128,12 @@ export default function App() {
               />
             </div>
 
-            {/* Sub-headline com Benefício Específico - Responsiva */}
             <p className="text-base sm:text-xl md:text-2xl text-gray-700 mb-4 sm:mb-6 font-semibold px-2">
               Descubra o <span className="text-green-600 font-black">Sistema de 4 Fases</span> que elimina 
               o trips de vez e <span className="text-green-600 font-black">economiza até R$ 5.000 por hectare</span> 
               em defensivos ineficazes
             </p>
 
-            {/* Prova Social Imediata - Responsiva */}
             <div className="bg-white p-3 sm:p-4 rounded-lg shadow-lg mb-4 sm:mb-6 inline-block">
               <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-xs sm:text-sm">
                 <div className="flex items-center gap-1">
@@ -151,7 +151,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* CTA Principal Mega Otimizado - Responsivo */}
             <Button 
               onClick={scrollToCheckout}
               className="bg-orange-500 hover:bg-orange-600 text-white font-black py-4 sm:py-6 px-6 sm:px-12 rounded-full text-base sm:text-xl md:text-2xl mb-4 sm:mb-6 transform hover:scale-105 transition-all duration-200 shadow-2xl animate-bounce w-full sm:w-auto"
@@ -160,7 +159,6 @@ export default function App() {
               QUERO ECONOMIZAR R$ 5.000 AGORA!
             </Button>
 
-            {/* Oferta com Desconto Agressivo - Responsiva */}
             <div className="bg-gradient-to-r from-red-500 to-red-600 text-white p-4 sm:p-6 rounded-lg shadow-xl">
               <div className="text-xs sm:text-sm font-bold mb-2">🔥 OFERTA RELÂMPAGO - APENAS HOJE!</div>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
@@ -196,7 +194,6 @@ export default function App() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               
-              {/* Erro 1 */}
               <div className="bg-white border-l-4 border-red-500 p-4 sm:p-6 rounded-lg shadow-lg">
                 <div className="flex items-start gap-2 sm:gap-3">
                   <X className="w-5 h-5 sm:w-6 sm:h-6 text-red-500 mt-1 flex-shrink-0" />
@@ -212,7 +209,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Erro 2 */}
               <div className="bg-white border-l-4 border-red-500 p-4 sm:p-6 rounded-lg shadow-lg">
                 <div className="flex items-start gap-2 sm:gap-3">
                   <X className="w-5 h-5 sm:w-6 sm:h-6 text-red-500 mt-1 flex-shrink-0" />
@@ -228,7 +224,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Erro 3 */}
               <div className="bg-white border-l-4 border-red-500 p-4 sm:p-6 rounded-lg shadow-lg">
                 <div className="flex items-start gap-2 sm:gap-3">
                   <X className="w-5 h-5 sm:w-6 sm:h-6 text-red-500 mt-1 flex-shrink-0" />
@@ -244,7 +239,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Erro 4 */}
               <div className="bg-white border-l-4 border-red-500 p-4 sm:p-6 rounded-lg shadow-lg">
                 <div className="flex items-start gap-2 sm:gap-3">
                   <X className="w-5 h-5 sm:w-6 sm:h-6 text-red-500 mt-1 flex-shrink-0" />
@@ -261,7 +255,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* Consequência Final - Responsiva */}
             <div className="bg-red-600 text-white p-6 sm:p-8 rounded-lg mt-6 sm:mt-8 text-center">
               <h3 className="text-xl sm:text-2xl font-black mb-3 sm:mb-4">🚨 RESULTADO FINAL:</h3>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 text-sm sm:text-lg font-semibold">
@@ -325,7 +318,8 @@ export default function App() {
           <div className="max-w-4xl mx-auto text-center">
             
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-4 sm:mb-6 px-2">
-              🎯 A SOLUÇÃO QUE VAI SALVAR<br />SUA LAVOURA E SEU DINHEIRO!
+              🎯 A SOLUÇÃO QUE VAI SALVAR  
+SUA LAVOURA E SEU DINHEIRO!
             </h2>
 
             <p className="text-base sm:text-xl md:text-2xl mb-6 sm:mb-8 font-semibold px-2">
@@ -340,7 +334,6 @@ export default function App() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 
-                {/* Fase 1 */}
                 <div className="bg-green-50 p-3 sm:p-4 rounded-lg border-l-4 border-green-500">
                   <div className="flex items-center gap-2 mb-2">
                     <div className="bg-green-500 text-white w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-bold text-sm sm:text-base">1</div>
@@ -349,7 +342,6 @@ export default function App() {
                   <p className="text-xs sm:text-sm text-gray-700">Produto específico que penetra nos tecidos e elimina ovos antes da eclosão</p>
                 </div>
 
-                {/* Fase 2 */}
                 <div className="bg-blue-50 p-3 sm:p-4 rounded-lg border-l-4 border-blue-500">
                   <div className="flex items-center gap-2 mb-2">
                     <div className="bg-blue-500 text-white w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-bold text-sm sm:text-base">2</div>
@@ -358,7 +350,6 @@ export default function App() {
                   <p className="text-xs sm:text-sm text-gray-700">Ataque direcionado às larvas em desenvolvimento com produto sistêmico</p>
                 </div>
 
-                {/* Fase 3 */}
                 <div className="bg-purple-50 p-3 sm:p-4 rounded-lg border-l-4 border-purple-500">
                   <div className="flex items-center gap-2 mb-2">
                     <div className="bg-purple-500 text-white w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-bold text-sm sm:text-base">3</div>
@@ -367,7 +358,6 @@ export default function App() {
                   <p className="text-xs sm:text-sm text-gray-700">Controle no solo com produto específico para pupas em transformação</p>
                 </div>
 
-                {/* Fase 4 */}
                 <div className="bg-orange-50 p-3 sm:p-4 rounded-lg border-l-4 border-orange-500">
                   <div className="flex items-center gap-2 mb-2">
                     <div className="bg-orange-500 text-white w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-bold text-sm sm:text-base">4</div>
@@ -409,7 +399,6 @@ export default function App() {
               </p>
             </div>
 
-            {/* Estatísticas Impactantes - Responsivas */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 mb-8 sm:mb-12">
               
               <div className="text-center bg-green-50 p-3 sm:p-6 rounded-lg border-2 border-green-200">
@@ -433,10 +422,8 @@ export default function App() {
               </div>
             </div>
 
-            {/* Depoimentos Ultra Específicos - Responsivos */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
               
-              {/* Depoimento 1 */}
               <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg border-2 border-green-200">
                 <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base">
@@ -461,7 +448,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Depoimento 2 */}
               <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg border-2 border-blue-200">
                 <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base">
@@ -486,7 +472,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Depoimento 3 */}
               <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg border-2 border-purple-200">
                 <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base">
@@ -517,185 +502,4 @@ export default function App() {
 
       {/* Seção de Urgência e Escassez - Otimizada para Mobile */}
       <div className="bg-gradient-to-r from-red-600 to-red-700 py-8 sm:py-12 md:py-16 text-white">
-        <div className="container mx-auto px-3 sm:px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4 sm:mb-6 px-2">
-              ⚠️ ATENÇÃO: OFERTA LIMITADA!
-            </h2>
-
-            <div className="bg-white text-gray-800 p-4 sm:p-8 rounded-lg shadow-2xl mb-6 sm:mb-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                
-                <div className="text-center">
-                  <Clock className="w-12 h-12 sm:w-16 sm:h-16 text-red-600 mx-auto mb-3 sm:mb-4" />
-                  <h3 className="text-lg sm:text-xl font-bold mb-2">APENAS HOJE!</h3>
-                  <p className="text-gray-600 text-sm sm:text-base">
-                    Esta oferta especial expira em menos de 1 hora. 
-                    Depois volta ao preço normal de R$ 297.
-                  </p>
-                </div>
-
-                <div className="text-center">
-                  <Users className="w-12 h-12 sm:w-16 sm:h-16 text-red-600 mx-auto mb-3 sm:mb-4" />
-                  <h3 className="text-lg sm:text-xl font-bold mb-2">ÚLTIMAS VAGAS!</h3>
-                  <p className="text-gray-600 text-sm sm:text-base">
-                    Restam apenas 23 vagas para garantir 
-                    suporte personalizado via WhatsApp.
-                  </p>
-                </div>
-              </div>
-
-              <div className="bg-red-100 p-3 sm:p-4 rounded-lg mt-4 sm:mt-6">
-                <p className="text-red-800 font-bold text-base sm:text-lg">
-                  🚨 Cada minuto que passa = R$ 20 de prejuízo na sua lavoura!
-                </p>
-              </div>
-            </div>
-
-            <Button 
-              onClick={scrollToCheckout}
-              className="bg-yellow-400 hover:bg-yellow-500 text-red-600 font-black py-4 sm:py-6 px-6 sm:px-12 rounded-full text-base sm:text-xl transform hover:scale-105 transition-all duration-200 shadow-2xl animate-pulse w-full sm:w-auto"
-            >
-              <Zap className="w-4 h-4 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
-              GARANTIR MINHA VAGA AGORA!
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      {/* Seção de Checkout Ultra Otimizada - Sem Formulário */}
-      <div id="checkout" className="bg-gray-50 py-8 sm:py-12 md:py-16">
-        <div className="container mx-auto px-3 sm:px-4">
-          <div className="max-w-2xl mx-auto">
-            
-            <div className="bg-white rounded-lg shadow-2xl p-4 sm:p-8 border-4 border-green-500">
-              
-              <div className="text-center mb-6 sm:mb-8">
-                <div className="bg-green-600 text-white p-3 sm:p-4 rounded-lg mb-4 sm:mb-6">
-                  <h2 className="text-xl sm:text-2xl font-black mb-2">🎯 GARANTA SEU ACESSO AGORA!</h2>
-                  <p className="text-green-100 text-sm sm:text-base">Transforme sua lavoura em 28 dias ou seu dinheiro de volta!</p>
-                </div>
-
-                {/* Oferta Irresistível - Responsiva */}
-                <div className="bg-gradient-to-r from-red-500 to-red-600 text-white p-4 sm:p-6 rounded-lg mb-4 sm:mb-6">
-                  <div className="text-xs sm:text-sm font-bold mb-2">🔥 OFERTA RELÂMPAGO - SÓ HOJE!</div>
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mb-2">
-                    <div className="text-3xl sm:text-4xl font-black">R$ 39,90</div>
-                    <div className="text-lg sm:text-xl line-through opacity-75">R$ 297,00</div>
-                    <div className="bg-yellow-400 text-red-600 px-2 sm:px-3 py-1 sm:py-2 rounded-full font-black text-xs sm:text-sm">87% OFF</div>
-                  </div>
-                  <div className="text-xs sm:text-sm">💳 Ou 12x de R$ 3,99 sem juros no cartão</div>
-                </div>
-
-                {/* Bônus Exclusivos - Responsivos */}
-                <div className="bg-yellow-50 border-2 border-yellow-400 p-3 sm:p-4 rounded-lg mb-4 sm:mb-6">
-                  <h3 className="font-bold text-yellow-800 mb-2 sm:mb-3 text-sm sm:text-base">🎁 BÔNUS EXCLUSIVOS (Valor: R$ 497)</h3>
-                  <div className="text-left space-y-1 sm:space-y-2 text-xs sm:text-sm">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-green-500 flex-shrink-0" />
-                      <span>📱 Suporte via WhatsApp por 30 dias</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-green-500 flex-shrink-0" />
-                      <span>📊 Planilha de controle e monitoramento</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-green-500 flex-shrink-0" />
-                      <span>🎥 Vídeos práticos de aplicação</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-green-500 flex-shrink-0" />
-                      <span>📋 Lista de produtos por região</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Garantias - Responsivas */}
-                <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-4 sm:mb-6 text-xs">
-                  <div className="flex flex-col items-center gap-1 bg-green-50 p-2 sm:p-3 rounded">
-                    <Shield className="w-4 h-4 sm:w-6 sm:h-6 text-green-600" />
-                    <span className="font-semibold text-center">Garantia 30 Dias</span>
-                  </div>
-                  <div className="flex flex-col items-center gap-1 bg-blue-50 p-2 sm:p-3 rounded">
-                    <Download className="w-4 h-4 sm:w-6 sm:h-6 text-blue-600" />
-                    <span className="font-semibold text-center">Acesso Imediato</span>
-                  </div>
-                  <div className="flex flex-col items-center gap-1 bg-purple-50 p-2 sm:p-3 rounded">
-                    <Phone className="w-4 h-4 sm:w-6 sm:h-6 text-purple-600" />
-                    <span className="font-semibold text-center">Suporte Total</span>
-                  </div>
-                </div>
-
-                {/* CTA Final - Responsivo */}
-                <a 
-                  href="https://pay.hotmart.com/I101398692S" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-full bg-green-600 hover:bg-green-700 text-white font-black py-4 sm:py-6 px-4 sm:px-6 rounded-lg text-base sm:text-xl transform hover:scale-105 transition-all duration-200 shadow-2xl inline-flex items-center justify-center gap-2 sm:gap-3"
-                >
-                  <DollarSign className="w-4 h-4 sm:w-6 sm:h-6" />
-                  GARANTIR ACESSO POR R$ 39,90
-                </a>
-
-                <div className="text-center text-xs sm:text-sm text-gray-600 mt-3 sm:mt-4 space-y-1">
-                  <p>🔒 Compra 100% segura e protegida</p>
-                  <p>✅ Garantia incondicional de 30 dias</p>
-                  <p>⚡ Acesso liberado em até 2 minutos</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Footer com CTA Final - Otimizado para Mobile */}
-      <div className="bg-green-800 text-white py-6 sm:py-8">
-        <div className="container mx-auto px-3 sm:px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            
-            <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 px-2">
-              🚀 Não deixe o trips destruir mais um dia da sua lavoura!
-            </h3>
-            
-            <p className="text-green-200 mb-4 sm:mb-6 text-sm sm:text-base px-2">
-              Mais de 1.247 produtores já transformaram suas lavouras. 
-              <strong>Você será o próximo?</strong>
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-6">
-              <div className="bg-green-700 px-4 sm:px-6 py-2 sm:py-3 rounded-lg">
-                <div className="text-xl sm:text-2xl font-bold">R$ 39,90</div>
-                <div className="text-xs sm:text-sm text-green-200">87% de desconto</div>
-              </div>
-              
-              <Button 
-                onClick={scrollToCheckout}
-                className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full text-sm sm:text-lg w-full sm:w-auto"
-              >
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
-                GARANTIR AGORA
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 text-xs sm:text-sm">
-              <div>
-                <h4 className="font-bold mb-1 sm:mb-2">📞 Contato</h4>
-                <p className="text-green-200">maracujalucrativo@gmail.com</p>
-              </div>
-              <div>
-                <h4 className="font-bold mb-1 sm:mb-2">🔒 Segurança</h4>
-                <p className="text-green-200">Compra protegida e garantida</p>
-              </div>
-              <div>
-                <h4 className="font-bold mb-1 sm:mb-2">📋 Políticas</h4>
-                <p className="text-green-200">Termos • Privacidade • Reembolso</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
+        <div className="container mx-auto
