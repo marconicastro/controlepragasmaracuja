@@ -487,5 +487,4 @@ SUA LAVOURA E SEU DINHEIRO!
                   "Ia cortar a plantação por causa das viroses. O sistema salvou meu negócio! 
                   Hoje tenho a melhor lavoura da região."
                 </p>
-                <div className="bg-purple-100 p-2 sm:p-3 rounded text-purple-800 font-semibold text-xs sm:text-sm">
-                  🏆 Melhor lavoura da
+                <div className="bg
