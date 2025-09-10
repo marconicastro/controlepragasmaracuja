@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -62,9 +61,9 @@ export default function App() {
     const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
     return match ? match[2] : null;
   }
-
+  
   const handleHotmartCheckout = () => {
-    // 1. Enviar evento initiate_checkout para o dataLayer (mantém o que já existe)
+    // Enviar evento initiate_checkout para o dataLayer
     if (typeof window !== 'undefined' && window.dataLayer) {
       window.dataLayer.push({
         event: 'initiate_checkout',
@@ -81,6 +80,7 @@ export default function App() {
         }
       });
     }
+  };
 
     // 2. Capturar cookies _fbp e _fbc
     const fbp = getCookie('_fbp');
@@ -112,7 +112,7 @@ export default function App() {
       window.location.href = 'https://pay.hotmart.com/I101398692S'; // Coloque o link padrão aqui
     }
   };
-
+  
   return (
     <div className="min-h-screen bg-white">
       {/* Barra de Urgência - Otimizada para Mobile */}
@@ -380,281 +380,362 @@ export default function App() {
                 
                 {/* Fase 1 */}
                 <div className="bg-green-50 p-3 sm:p-4 rounded-lg border-l-4 border-green-500">
-                  <div className="flex items-center gap-2 sm:gap-3 mb-2">
-                    <div className="bg-green-500 text-white rounded-full w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center font-black text-sm sm:text-base">1</div>
-                    <h4 className="font-black text-gray-800 text-sm sm:text-base">CHOQUE INICIAL (Dia 1-7)</h4>
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="bg-green-500 text-white w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-bold text-sm sm:text-base">1</div>
+                    <h4 className="font-bold text-green-700 text-sm sm:text-base">FASE OVOS (Dias 1-7)</h4>
                   </div>
-                  <p className="text-gray-600 text-xs sm:text-sm">Elimina 80% dos adultos e ninfas com produtos de contato e ingestão.</p>
+                  <p className="text-xs sm:text-sm text-gray-700">Eliminação dos ovos antes da eclosão com produto ovicida específico</p>
                 </div>
 
                 {/* Fase 2 */}
-                <div className="bg-green-50 p-3 sm:p-4 rounded-lg border-l-4 border-green-500">
-                  <div className="flex items-center gap-2 sm:gap-3 mb-2">
-                    <div className="bg-green-500 text-white rounded-full w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center font-black text-sm sm:text-base">2</div>
-                    <h4 className="font-black text-gray-800 text-sm sm:text-base">QUEBRA DO CICLO (Dia 8-14)</h4>
+                <div className="bg-blue-50 p-3 sm:p-4 rounded-lg border-l-4 border-blue-500">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="bg-blue-500 text-white w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-bold text-sm sm:text-base">2</div>
+                    <h4 className="font-bold text-blue-700 text-sm sm:text-base">FASE NINFAS (Dias 8-14)</h4>
                   </div>
-                  <p className="text-gray-600 text-xs sm:text-sm">Ataca ovos e pupas no solo com produtos específicos, impedindo a nova geração.</p>
+                  <p className="text-xs sm:text-sm text-gray-700">Ataque direcionado às larvas em desenvolvimento com produto sistêmico</p>
                 </div>
 
                 {/* Fase 3 */}
-                <div className="bg-green-50 p-3 sm:p-4 rounded-lg border-l-4 border-green-500">
-                  <div className="flex items-center gap-2 sm:gap-3 mb-2">
-                    <div className="bg-green-500 text-white rounded-full w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center font-black text-sm sm:text-base">3</div>
-                    <h4 className="font-black text-gray-800 text-sm sm:text-base">ROTAÇÃO INTELIGENTE (Dia 15-21)</h4>
+                <div className="bg-purple-50 p-3 sm:p-4 rounded-lg border-l-4 border-purple-500">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="bg-purple-500 text-white w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-bold text-sm sm:text-base">3</div>
+                    <h4 className="font-bold text-purple-700 text-sm sm:text-base">FASE PUPAS (Dias 15-21)</h4>
                   </div>
-                  <p className="text-gray-600 text-xs sm:text-sm">Alterna 3 grupos químicos diferentes para evitar a resistência do trips.</p>
+                  <p className="text-xs sm:text-sm text-gray-700">Controle no solo com produto específico para pupas em transformação</p>
                 </div>
 
                 {/* Fase 4 */}
-                <div className="bg-green-50 p-3 sm:p-4 rounded-lg border-l-4 border-green-500">
-                  <div className="flex items-center gap-2 sm:gap-3 mb-2">
-                    <div className="bg-green-500 text-white rounded-full w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center font-black text-sm sm:text-base">4</div>
-                    <h4 className="font-black text-gray-800 text-sm sm:text-base">BLINDAGEM FINAL (Dia 22-28)</h4>
+                <div className="bg-orange-50 p-3 sm:p-4 rounded-lg border-l-4 border-orange-500">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="bg-orange-500 text-white w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-bold text-sm sm:text-base">4</div>
+                    <h4 className="font-bold text-orange-700 text-sm sm:text-base">FASE ADULTOS (Dias 22-28)</h4>
                   </div>
-                  <p className="text-gray-600 text-xs sm:text-sm">Cria uma barreira protetora com produtos sistêmicos e biológicos.</p>
+                  <p className="text-xs sm:text-sm text-gray-700">Eliminação final dos adultos remanescentes e proteção residual</p>
                 </div>
+              </div>
+
+              <div className="bg-yellow-100 p-3 sm:p-4 rounded-lg mt-4 sm:mt-6">
+                <p className="text-yellow-800 font-bold text-base sm:text-lg">
+                  ⚡ RESULTADO: Ciclo do trips QUEBRADO para sempre!
+                </p>
               </div>
             </div>
 
-            {/* CTA Secundário */}
             <Button 
               onClick={scrollToCheckout}
-              className="bg-orange-500 hover:bg-orange-600 text-white font-black py-4 sm:py-6 px-6 sm:px-12 rounded-full text-base sm:text-xl md:text-2xl transform hover:scale-105 transition-all duration-200 shadow-2xl w-full sm:w-auto"
+              className="bg-yellow-400 hover:bg-yellow-500 text-green-800 font-black py-4 sm:py-6 px-6 sm:px-12 rounded-full text-base sm:text-xl transform hover:scale-105 transition-all duration-200 shadow-2xl w-full sm:w-auto"
             >
-              <Shield className="w-4 h-4 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
-              QUERO BLINDAR MINHA LAVOURA HOJE!
+              <Target className="w-4 h-4 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
+              QUERO O SISTEMA 4 FASES AGORA!
             </Button>
           </div>
         </div>
       </div>
 
-      {/* Seção de Conteúdo do E-book - Otimizada para Mobile */}
-      <div className="bg-gray-50 py-8 sm:py-12 md:py-16">
+      {/* Seção de Resultados Comprovados - Otimizada para Mobile */}
+      <div className="bg-white py-8 sm:py-12 md:py-16">
         <div className="container mx-auto px-3 sm:px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             
             <div className="text-center mb-8 sm:mb-12">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-800 mb-3 sm:mb-4 px-2">
-                O que você vai receber <span className="text-green-600">imediatamente</span>:
+                📊 RESULTADOS QUE FALAM POR SI SÓ
               </h2>
               <p className="text-base sm:text-xl text-gray-600 px-2">
-                Um guia completo, passo a passo, para nunca mais sofrer com o trips.
+                Mais de <strong>1.247 produtores</strong> já transformaram suas lavouras com este método
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+            {/* Estatísticas Impactantes - Responsivas */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 mb-8 sm:mb-12">
               
-              {/* Item 1 */}
-              <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg flex items-start gap-3 sm:gap-4">
-                <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-green-500 mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="font-bold text-gray-800 mb-2 text-sm sm:text-base">✅ Protocolo 4 Fases Detalhado</h3>
-                  <p className="text-gray-600 text-xs sm:text-sm">O passo a passo exato de cada uma das 4 fases, com os dias de aplicação e o que fazer em cada etapa.</p>
-                </div>
+              <div className="text-center bg-green-50 p-3 sm:p-6 rounded-lg border-2 border-green-200">
+                <div className="text-2xl sm:text-4xl font-black text-green-600 mb-1 sm:mb-2">94%</div>
+                <p className="text-gray-700 font-semibold text-xs sm:text-base">Taxa de Sucesso</p>
               </div>
 
-              {/* Item 2 */}
-              <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg flex items-start gap-3 sm:gap-4">
-                <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-green-500 mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="font-bold text-gray-800 mb-2 text-sm sm:text-base">✅ Lista de Produtos Eficazes (e baratos!)</h3>
-                  <p className="text-gray-600 text-xs sm:text-sm">Nomes comerciais e princípios ativos que funcionam de verdade, para você parar de gastar com o que não funciona.</p>
-                </div>
+              <div className="text-center bg-blue-50 p-3 sm:p-6 rounded-lg border-2 border-blue-200">
+                <div className="text-2xl sm:text-4xl font-black text-blue-600 mb-1 sm:mb-2">R$ 5k</div>
+                <p className="text-gray-700 font-semibold text-xs sm:text-base">Economia Média/Hectare</p>
               </div>
 
-              {/* Item 3 */}
-              <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg flex items-start gap-3 sm:gap-4">
-                <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-green-500 mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="font-bold text-gray-800 mb-2 text-sm sm:text-base">✅ Guia de Identificação do Trips</h3>
-                  <p className="text-gray-600 text-xs sm:text-sm">Aprenda a identificar o trips em todas as suas fases (ovo, ninfa, pupa, adulto) para atacar no momento certo.</p>
-                </div>
+              <div className="text-center bg-purple-50 p-3 sm:p-6 rounded-lg border-2 border-purple-200">
+                <div className="text-2xl sm:text-4xl font-black text-purple-600 mb-1 sm:mb-2">28</div>
+                <p className="text-gray-700 font-semibold text-xs sm:text-base">Dias para Resultado</p>
               </div>
 
-              {/* Item 4 */}
-              <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg flex items-start gap-3 sm:gap-4">
-                <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-green-500 mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="font-bold text-gray-800 mb-2 text-sm sm:text-base">✅ Calendário de Aplicação Pronto</h3>
-                  <p className="text-gray-600 text-xs sm:text-sm">Um calendário de 28 dias para você imprimir e seguir, sem ter que pensar no que fazer a cada dia.</p>
-                </div>
+              <div className="text-center bg-orange-50 p-3 sm:p-6 rounded-lg border-2 border-orange-200">
+                <div className="text-2xl sm:text-4xl font-black text-orange-600 mb-1 sm:mb-2">+67%</div>
+                <p className="text-gray-700 font-semibold text-xs sm:text-base">Aumento na Produção</p>
               </div>
             </div>
 
-            {/* Imagem do E-book */}
-            <div className="mt-8 sm:mt-12 text-center">
-              <img 
-                src="/ebook-conteudo.webp" 
-                alt="Conteúdo do E-book Sistema de Controle de Trips" 
-                className="mx-auto max-w-full h-auto rounded-lg shadow-2xl"
-                style={{ maxWidth: '500px' }}
-                draggable="false"
-                onContextMenu={(e) => e.preventDefault()}
-                onDragStart={(e) => e.preventDefault()}
-                onCopy={(e) => e.preventDefault()}
-                onCut={(e) => e.preventDefault()}
-                onPaste={(e) => e.preventDefault()}
-              />
+            {/* Depoimentos Ultra Específicos - Responsivos */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+              
+              {/* Depoimento 1 */}
+              <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg border-2 border-green-200">
+                <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base">
+                    JM
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-800 text-sm sm:text-base">João Mendes</h4>
+                    <p className="text-gray-600 text-xs sm:text-sm">15 hectares - Bahia</p>
+                  </div>
+                  <div className="flex text-yellow-400 ml-auto">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-3 h-3 sm:w-4 sm:h-4 fill-current" />
+                    ))}
+                  </div>
+                </div>
+                <p className="text-gray-700 italic mb-3 sm:mb-4 text-xs sm:text-sm">
+                  "Economizei R$ 73.500 em defensivos! O trips sumiu em 21 dias e não voltou mais. 
+                  Minha produção aumentou 89% na safra seguinte."
+                </p>
+                <div className="bg-green-100 p-2 sm:p-3 rounded text-green-800 font-semibold text-xs sm:text-sm">
+                  💰 Economia: R$ 73.500 | 📈 Aumento: 89%
+                </div>
+              </div>
+
+              {/* Depoimento 2 */}
+              <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg border-2 border-blue-200">
+                <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base">
+                    MS
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-800 text-sm sm:text-base">Maria Silva</h4>
+                    <p className="text-gray-600 text-xs sm:text-sm">8 hectares - Ceará</p>
+                  </div>
+                  <div className="flex text-yellow-400 ml-auto">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-3 h-3 sm:w-4 sm:h-4 fill-current" />
+                    ))}
+                  </div>
+                </div>
+                <p className="text-gray-700 italic mb-3 sm:mb-4 text-xs sm:text-sm">
+                  "Estava gastando R$ 1.200 por hectare com trips. Agora gasto R$ 180 e tenho 
+                  controle total. Lucro líquido subiu R$ 8.160!"
+                </p>
+                <div className="bg-blue-100 p-2 sm:p-3 rounded text-blue-800 font-semibold text-xs sm:text-sm">
+                  💰 Economia mensal: R$ 8.160 | 🎯 Controle: 100%
+                </div>
+              </div>
+
+              {/* Depoimento 3 */}
+              <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg border-2 border-purple-200">
+                <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base">
+                    AS
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-800 text-sm sm:text-base">Antônio Santos</h4>
+                    <p className="text-gray-600 text-xs sm:text-sm">22 hectares - Pernambuco</p>
+                  </div>
+                  <div className="flex text-yellow-400 ml-auto">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-3 h-3 sm:w-4 sm:h-4 fill-current" />
+                    ))}
+                  </div>
+                </div>
+                <p className="text-gray-700 italic mb-3 sm:mb-4 text-xs sm:text-sm">
+                  "Ia cortar a plantação por causa das viroses. O sistema salvou meu negócio! 
+                  Hoje tenho a melhor lavoura da região."
+                </p>
+                <div className="bg-purple-100 p-2 sm:p-3 rounded text-purple-800 font-semibold text-xs sm:text-sm">
+                  🏆 Melhor lavoura da região | 💪 Negócio salvo
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Seção de Bônus - Otimizada para Mobile */}
-      <div className="bg-yellow-50 py-8 sm:py-12 md:py-16 border-t-4 border-yellow-400">
+      {/* Seção de Urgência e Escassez - Otimizada para Mobile */}
+      <div className="bg-gradient-to-r from-red-600 to-red-700 py-8 sm:py-12 md:py-16 text-white">
         <div className="container mx-auto px-3 sm:px-4">
           <div className="max-w-4xl mx-auto text-center">
             
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-800 mb-3 sm:mb-4 px-2">
-              E ainda tem mais... <span className="text-yellow-500">3 BÔNUS ESPECIAIS</span> (só hoje!)
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4 sm:mb-6 px-2">
+              ⚠️ ATENÇÃO: OFERTA LIMITADA!
             </h2>
-            <p className="text-base sm:text-xl text-gray-600 mb-8 sm:mb-12 px-2">
-              Comprando agora, você leva de graça estes materiais que valem mais que o próprio guia!
+
+            <div className="bg-white text-gray-800 p-4 sm:p-8 rounded-lg shadow-2xl mb-6 sm:mb-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                
+                <div className="text-center">
+                  <Clock className="w-12 h-12 sm:w-16 sm:h-16 text-red-600 mx-auto mb-3 sm:mb-4" />
+                  <h3 className="text-lg sm:text-xl font-bold mb-2">APENAS HOJE!</h3>
+                  <p className="text-gray-600 text-sm sm:text-base">
+                    Esta oferta especial expira em menos de 1 hora. 
+                    Depois volta ao preço normal de R$ 297.
+                  </p>
+                </div>
+
+                <div className="text-center">
+                  <Users className="w-12 h-12 sm:w-16 sm:h-16 text-red-600 mx-auto mb-3 sm:mb-4" />
+                  <h3 className="text-lg sm:text-xl font-bold mb-2">ÚLTIMAS VAGAS!</h3>
+                  <p className="text-gray-600 text-sm sm:text-base">
+                    Restam apenas 23 vagas para garantir 
+                    suporte personalizado via WhatsApp.
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-red-100 p-3 sm:p-4 rounded-lg mt-4 sm:mt-6">
+                <p className="text-red-800 font-bold text-base sm:text-lg">
+                  🚨 Cada minuto que passa = R$ 20 de prejuízo na sua lavoura!
+                </p>
+              </div>
+            </div>
+
+            <Button 
+              onClick={scrollToCheckout}
+              className="bg-yellow-400 hover:bg-yellow-500 text-red-600 font-black py-4 sm:py-6 px-6 sm:px-12 rounded-full text-base sm:text-xl transform hover:scale-105 transition-all duration-200 shadow-2xl animate-pulse w-full sm:w-auto"
+            >
+              <Zap className="w-4 h-4 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
+              GARANTIR MINHA VAGA AGORA!
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* Seção de Checkout Ultra Otimizada - Sem Formulário */}
+      <div id="checkout" className="bg-gray-50 py-8 sm:py-12 md:py-16">
+        <div className="container mx-auto px-3 sm:px-4">
+          <div className="max-w-2xl mx-auto">
+            
+            <div className="bg-white rounded-lg shadow-2xl p-4 sm:p-8 border-4 border-green-500">
+              
+              <div className="text-center mb-6 sm:mb-8">
+                <div className="bg-green-600 text-white p-3 sm:p-4 rounded-lg mb-4 sm:mb-6">
+                  <h2 className="text-xl sm:text-2xl font-black mb-2">🎯 GARANTA SEU ACESSO AGORA!</h2>
+                  <p className="text-green-100 text-sm sm:text-base">Transforme sua lavoura em 28 dias ou seu dinheiro de volta!</p>
+                </div>
+
+                {/* Oferta Irresistível - Responsiva */}
+                <div className="bg-gradient-to-r from-red-500 to-red-600 text-white p-4 sm:p-6 rounded-lg mb-4 sm:mb-6">
+                  <div className="text-xs sm:text-sm font-bold mb-2">🔥 OFERTA RELÂMPAGO - SÓ HOJE!</div>
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mb-2">
+                    <div className="text-3xl sm:text-4xl font-black">R$ 39,90</div>
+                    <div className="text-lg sm:text-xl line-through opacity-75">R$ 297,00</div>
+                    <div className="bg-yellow-400 text-red-600 px-2 sm:px-3 py-1 sm:py-2 rounded-full font-black text-xs sm:text-sm">87% OFF</div>
+                  </div>
+                  <div className="text-xs sm:text-sm">💳 Ou 12x de R$ 3,99 sem juros no cartão</div>
+                </div>
+
+                {/* Bônus Exclusivos - Responsivos */}
+                <div className="bg-yellow-50 border-2 border-yellow-400 p-3 sm:p-4 rounded-lg mb-4 sm:mb-6">
+                  <h3 className="font-bold text-yellow-800 mb-2 sm:mb-3 text-sm sm:text-base">🎁 BÔNUS EXCLUSIVOS (Valor: R$ 497)</h3>
+                  <div className="text-left space-y-1 sm:space-y-2 text-xs sm:text-sm">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-green-500 flex-shrink-0" />
+                      <span>📱 Suporte via WhatsApp por 30 dias</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-green-500 flex-shrink-0" />
+                      <span>📊 Planilha de controle e monitoramento</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-green-500 flex-shrink-0" />
+                      <span>🎥 Vídeos práticos de aplicação</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-green-500 flex-shrink-0" />
+                      <span>📋 Lista de produtos por região</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Garantias - Responsivas */}
+                <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-4 sm:mb-6 text-xs">
+                  <div className="flex flex-col items-center gap-1 bg-green-50 p-2 sm:p-3 rounded">
+                    <Shield className="w-4 h-4 sm:w-6 sm:h-6 text-green-600" />
+                    <span className="font-semibold text-center">Garantia 30 Dias</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-1 bg-blue-50 p-2 sm:p-3 rounded">
+                    <Download className="w-4 h-4 sm:w-6 sm:h-6 text-blue-600" />
+                    <span className="font-semibold text-center">Acesso Imediato</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-1 bg-purple-50 p-2 sm:p-3 rounded">
+                    <Phone className="w-4 h-4 sm:w-6 sm:h-6 text-purple-600" />
+                    <span className="font-semibold text-center">Suporte Total</span>
+                  </div>
+                </div>
+
+                {/* CTA Final - Responsivo */}
+                <a 
+                  href="https://pay.hotmart.com/I101398692S" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  id="botao-compra-hotmart" 
+                  onClick={handleHotmartCheckout}
+                  className="w-full bg-green-600 hover:bg-green-700 text-white font-black py-4 sm:py-6 px-4 sm:px-6 rounded-lg text-base sm:text-xl transform hover:scale-105 transition-all duration-200 shadow-2xl inline-flex items-center justify-center gap-2 sm:gap-3"
+                >
+                  <DollarSign className="w-4 h-4 sm:w-6 sm:h-6" />
+                  GARANTIR ACESSO POR R$ 39,90
+                </a>
+
+                <div className="text-center text-xs sm:text-sm text-gray-600 mt-3 sm:mt-4 space-y-1">
+                  <p>🔒 Compra 100% segura e protegida</p>
+                  <p>✅ Garantia incondicional de 30 dias</p>
+                  <p>⚡ Acesso liberado em até 2 minutos</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer com CTA Final - Otimizado para Mobile */}
+      <div className="bg-green-800 text-white py-6 sm:py-8">
+        <div className="container mx-auto px-3 sm:px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            
+            <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 px-2">
+              🚀 Não deixe o trips destruir mais um dia da sua lavoura!
+            </h3>
+            
+            <p className="text-green-200 mb-4 sm:mb-6 text-sm sm:text-base px-2">
+              Mais de 1.247 produtores já transformaram suas lavouras. 
+              <strong>Você será o próximo?</strong>
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+              <div className="bg-green-700 px-4 sm:px-6 py-2 sm:py-3 rounded-lg">
+                <div className="text-xl sm:text-2xl font-bold">R$ 39,90</div>
+                <div className="text-xs sm:text-sm text-green-200">87% de desconto</div>
+              </div>
               
-              {/* Bônus 1 */}
-              <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-left">
-                <div className="bg-yellow-400 text-gray-800 px-3 py-1 rounded-full font-bold text-xs inline-block mb-3">BÔNUS 1</div>
-                <h3 className="font-bold text-gray-800 mb-2 text-sm sm:text-base">Planilha de Custos Automática</h3>
-                <p className="text-gray-600 text-xs sm:text-sm mb-3">Saiba exatamente quanto está gastando e quanto está economizando com o sistema. (Valor: R$ 47,00)</p>
-                <div className="font-black text-green-600 text-sm sm:text-base">HOJE: GRÁTIS!</div>
-              </div>
+              <Button 
+                onClick={scrollToCheckout}
+                className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full text-sm sm:text-lg w-full sm:w-auto"
+              >
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
+                GARANTIR AGORA
+              </Button>
+            </div>
 
-              {/* Bônus 2 */}
-              <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-left">
-                <div className="bg-yellow-400 text-gray-800 px-3 py-1 rounded-full font-bold text-xs inline-block mb-3">BÔNUS 2</div>
-                <h3 className="font-bold text-gray-800 mb-2 text-sm sm:text-base">Guia de Pulverização Perfeita</h3>
-                <p className="text-gray-600 text-xs sm:text-sm mb-3">Aprenda a regular bicos, pressão e volume de calda para acertar o alvo em cheio. (Valor: R$ 37,00)</p>
-                <div className="font-black text-green-600 text-sm sm:text-base">HOJE: GRÁTIS!</div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 text-xs sm:text-sm">
+              <div>
+                <h4 className="font-bold mb-1 sm:mb-2">📞 Contato</h4>
+                <p className="text-green-200">maracujalucrativo@gmail.com</p>
               </div>
-
-              {/* Bônus 3 */}
-              <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-left">
-                <div className="bg-yellow-400 text-gray-800 px-3 py-1 rounded-full font-bold text-xs inline-block mb-3">BÔNUS 3</div>
-                <h3 className="font-bold text-gray-800 mb-2 text-sm sm:text-base">Acesso ao Grupo VIP de Produtores</h3>
-                <p className="text-gray-600 text-xs sm:text-sm mb-3">Troque experiências e tire dúvidas com outros produtores que estão usando o sistema. (Valor: R$ 97,00/ano)</p>
-                <div className="font-black text-green-600 text-sm sm:text-base">HOJE: GRÁTIS!</div>
+              <div>
+                <h4 className="font-bold mb-1 sm:mb-2">🔒 Segurança</h4>
+                <p className="text-green-200">Compra protegida e garantida</p>
+              </div>
+              <div>
+                <h4 className="font-bold mb-1 sm:mb-2">📋 Políticas</h4>
+                <p className="text-green-200">Termos • Privacidade • Reembolso</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Seção de Checkout Final - Otimizada para Mobile */}
-      <div id="checkout" className="bg-gradient-to-br from-gray-800 to-gray-900 py-8 sm:py-12 md:py-16 text-white">
-        <div className="container mx-auto px-3 sm:px-4">
-          <div className="max-w-2xl mx-auto bg-white text-gray-800 rounded-2xl shadow-2xl p-6 sm:p-8">
-            
-            <div className="text-center mb-6 sm:mb-8">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-green-600 mb-2 sm:mb-3">GARANTA SEU ACESSO IMEDIATO</h2>
-              <p className="text-base sm:text-lg text-gray-600">Última chance para economizar 87% e salvar sua lavoura!</p>
-            </div>
-
-            <div className="bg-green-50 border-2 border-green-200 p-4 sm:p-6 rounded-lg mb-6 sm:mb-8">
-              <h3 className="font-bold text-gray-800 mb-4 text-center text-sm sm:text-base">RESUMO DO PEDIDO:</h3>
-              <ul className="space-y-2 text-xs sm:text-sm">
-                <li className="flex justify-between items-center">
-                  <span>E-book Sistema 4 Fases</span>
-                  <span className="font-bold text-green-600">R$ 297,00</span>
-                </li>
-                <li className="flex justify-between items-center">
-                  <span>Bônus 1: Planilha de Custos</span>
-                  <span className="font-bold text-green-600">R$ 47,00</span>
-                </li>
-                <li className="flex justify-between items-center">
-                  <span>Bônus 2: Guia de Pulverização</span>
-                  <span className="font-bold text-green-600">R$ 37,00</span>
-                </li>
-                <li className="flex justify-between items-center">
-                  <span>Bônus 3: Grupo VIP</span>
-                  <span className="font-bold text-green-600">R$ 97,00</span>
-                </li>
-                <li className="flex justify-between items-center text-red-600 font-bold">
-                  <span>Desconto de Hoje (87%)</span>
-                  <span>- R$ 441,10</span>
-                </li>
-              </ul>
-              <hr className="my-3 sm:my-4" />
-              <div className="flex justify-between items-center text-lg sm:text-xl font-black">
-                <span>TOTAL:</span>
-                <span>R$ 39,90</span>
-              </div>
-            </div>
-
-            {/* Botão de Compra Final */}
-            <a 
-              id="botao-compra-hotmart"
-              href="https://pay.hotmart.com/I101398692S"
-              onClick={(e) => {
-                e.preventDefault(); // Previne a navegação imediata
-                handleHotmartCheckout();
-              }}
-              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-4 sm:py-6 px-6 sm:px-12 rounded-full text-base sm:text-xl md:text-2xl transform hover:scale-105 transition-all duration-200 shadow-2xl animate-bounce flex items-center justify-center text-center"
-            >
-              <Rocket className="w-4 h-4 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
-              GARANTIR ACESSO POR R$ 39,90
-            </a>
-
-            <div className="text-center mt-4 sm:mt-6 text-xs sm:text-sm text-gray-500">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <Shield className="w-3 h-3 sm:w-4 sm:h-4" />
-                <span>Compra 100% Segura</span>
-              </div>
-              <img src="/selos-seguranca.png" alt="Selos de Segurança" className="mx-auto h-8 sm:h-10" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Seção de Garantia Incondicional - Otimizada para Mobile */}
-      <div className="bg-gray-100 py-8 sm:py-12 md:py-16">
-        <div className="container mx-auto px-3 sm:px-4">
-          <div className="max-w-3xl mx-auto flex flex-col md:flex-row items-center gap-6 sm:gap-8">
-            <img 
-              src="/selo-garantia.png" 
-              alt="Selo de Garantia de 7 Dias" 
-              className="w-32 sm:w-48 md:w-56 flex-shrink-0"
-              draggable="false"
-              onContextMenu={(e) => e.preventDefault()}
-              onDragStart={(e) => e.preventDefault()}
-              onCopy={(e) => e.preventDefault()}
-              onCut={(e) => e.preventDefault()}
-              onPaste={(e) => e.preventDefault()}
-            />
-            <div>
-              <h2 className="text-2xl sm:text-3xl font-black text-gray-800 mb-3 sm:mb-4">RISCO ZERO PARA VOCÊ!</h2>
-              <p className="text-gray-600 mb-4 text-sm sm:text-base">
-                Ou você tem o resultado que espera ou seu dinheiro de volta. Simples assim. Você tem <strong>7 dias de garantia incondicional</strong>. Se por qualquer motivo não gostar do conteúdo ou não ver resultados, basta enviar um único e-mail para <a href="mailto:suporte@agrointeligente.com" className="text-green-600 font-bold">suporte@agrointeligente.com</a> e nós devolvemos 100% do seu dinheiro na hora, sem perguntas.
-              </p>
-              <div className="bg-green-100 border-l-4 border-green-500 p-3 sm:p-4 rounded-r-lg text-sm sm:text-base">
-                <strong>O risco é todo nosso.</strong> Você não tem nada a perder.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* FAQ - Otimizada para Mobile */}
-      <div className="bg-white py-8 sm:py-12 md:py-16">
-        <div className="container mx-auto px-3 sm:px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-center text-gray-800 mb-8 sm:mb-12">Perguntas Frequentes</h2>
-            {/* Adicionar componente de Accordion/FAQ aqui */}
-          </div>
-        </div>
-      </div>
-
-      {/* Footer - Otimizado para Mobile */}
-      <footer className="bg-gray-800 text-white py-6 sm:py-8">
-        <div className="container mx-auto px-3 sm:px-4 text-center text-xs sm:text-sm">
-          <p className="mb-2">Copyright © 2024 - Agro Inteligente - Todos os direitos reservados.</p>
-          <p className="text-gray-400">Este site não é afiliado ao Facebook ou a qualquer entidade do Facebook. Depois que você sair do Facebook, a responsabilidade não é deles e sim do nosso site.</p>
-        </div>
-      </footer>
     </div>
   );
 }
-
 
