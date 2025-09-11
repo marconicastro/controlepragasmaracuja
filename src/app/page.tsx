@@ -56,14 +56,8 @@ export default function App() {
     document.getElementById('checkout').scrollIntoView({ behavior: 'smooth' });
   };
 
-  function getCookie(name) {
-    if (typeof document === 'undefined') return null; // Garante que só roda no navegador
-    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-    return match ? match[2] : null;
-  }
-
   const handleHotmartCheckout = () => {
-    // 1. Enviar evento initiate_checkout para o dataLayer (mantém o que já existe)
+    // Enviar evento initiate_checkout para o dataLayer
     if (typeof window !== 'undefined' && window.dataLayer) {
       window.dataLayer.push({
         event: 'initiate_checkout',
@@ -79,36 +73,6 @@ export default function App() {
           }]
         }
       });
-    }
-
-    // 2. Capturar cookies _fbp e _fbc
-    const fbp = getCookie('_fbp');
-    const fbc = getCookie('_fbc');
-
-    let sckValue = '';
-    if (fbp) {
-      sckValue += '_fbp=' + fbp;
-    }
-    if (fbc) {
-      sckValue += (sckValue ? '&' : '') + '_fbc=' + fbc;
-    }
-
-    // 3. Obter o link original da Hotmart do botão
-    const hotmartButton = document.getElementById('botao-compra-hotmart');
-    if (hotmartButton && hotmartButton.href) {
-      let hotmartLink = new URL(hotmartButton.href);
-
-      // 4. Adicionar o parâmetro sck ao link
-      if (sckValue) {
-        hotmartLink.searchParams.set('sck', sckValue);
-      }
-
-      // 5. Redirecionar o usuário para o link modificado
-      window.location.href = hotmartLink.toString();
-    } else {
-      console.error('Botão da Hotmart não encontrado ou sem href.');
-      // Fallback: se o botão não for encontrado, redireciona para o link padrão
-      window.location.href = 'https://pay.hotmart.com/I101398692S'; // Coloque o link padrão aqui
     }
   };
 
