@@ -52,29 +52,81 @@ export default function App() {
     return () => clearTimeout(viewContentTimer);
   }, []);
 
+  const getCookie = useCallback((name: string): string | null => {
+    if (typeof document === 'undefined') return null;
+    
+    try {
+      return document.cookie
+        .split('; ')
+        .find(row => row.startsWith(name + '='))
+        ?.split('=')[1] || null;
+    } catch (error) {
+      console.warn('Erro ao capturar cookie:', error);
+      return null;
+    }
+  }, []);
+
   const scrollToCheckout = () => {
-    document.getElementById('checkout').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('checkout')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleHotmartCheckout = () => {
-    // Enviar evento initiate_checkout para o dataLayer
-    if (typeof window !== 'undefined' && window.dataLayer) {
-      window.dataLayer.push({
-        event: 'initiate_checkout',
-        ecommerce: {
-          currency: 'BRL',
-          value: 39.90,
-          items: [{
-            item_id: '6080425',
-            item_name: 'Sistema de Controle de Trips - Maracujá',
-            category: 'Agricultura',
-            quantity: 1,
-            price: 39.90
-          }]
+  // Função otimizada de checkout com captura de cookies
+  const handleHotmartCheckout = useCallback(() => {
+    try {
+      // 1. Enviar evento initiate_checkout para o dataLayer
+      if (typeof window !== 'undefined' && window.dataLayer) {
+        window.dataLayer.push({
+          event: 'initiate_checkout',
+          ecommerce: {
+            currency: 'BRL',
+            value: 39.90,
+            items: [{
+              item_id: '6080425',
+              item_name: 'Sistema de Controle de Trips - Maracujá',
+              category: 'Agricultura',
+              quantity: 1,
+              price: 39.90
+            }]
+          }
+        });
+      }
+
+      // 2. Capturar cookies do Facebook Pixel
+      const fbp = getCookie('_fbp');
+      const fbc = getCookie('_fbc');
+
+      // 3. Construir parâmetro sck otimizado
+      const sckParams: string[] = [];
+      if (fbp) sckParams.push(`_fbp=${encodeURIComponent(fbp)}`);
+      if (fbc) sckParams.push(`_fbc=${encodeURIComponent(fbc)}`);
+      
+      const sckValue = sckParams.join('&');
+
+      // 4. Obter e modificar o link da Hotmart
+      const hotmartButton = document.getElementById('botao-compra-hotmart') as HTMLAnchorElement;
+      
+      if (hotmartButton?.href) {
+        const hotmartLink = new URL(hotmartButton.href);
+        
+        // Adicionar parâmetro sck se houver cookies
+        if (sckValue) {
+          hotmartLink.searchParams.set('sck', sckValue);
         }
-      });
+        
+        // 5. Redirecionar com link otimizado
+        window.location.href = hotmartLink.toString();
+        
+      } else {
+        throw new Error('Botão da Hotmart não encontrado');
+      }
+      
+    } catch (error) {
+      console.error('Erro no checkout:', error);
+      
+      // Fallback seguro - link direto da Hotmart
+      window.location.href = 'https://pay.hotmart.com/I101398692S';
     }
-  };
+  }, [getCookie]);
 
   return (
     <div className="min-h-screen bg-white">
