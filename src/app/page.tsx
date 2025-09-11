@@ -56,18 +56,8 @@ export default function App() {
     document.getElementById('checkout').scrollIntoView({ behavior: 'smooth' });
   };
 
-  function getCookie(name) {
-    if (typeof document === 'undefined') return null; // Garante que só roda no navegador
-    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-    return match ? match[2] : null;
-  }
-
-  // CÓDIGO PARA SUBSTITUIR A FUNÇÃO ANTIGA
-const handleHotmartCheckout = (event) => {
-    // 1. IMPEDE o link de navegar para o href original imediatamente
-    event.preventDefault();
-
-    // 2. Enviar evento initiate_checkout para o dataLayer (mantém o que já existe)
+  const handleHotmartCheckout = () => {
+    // Enviar evento initiate_checkout para o dataLayer
     if (typeof window !== 'undefined' && window.dataLayer) {
       window.dataLayer.push({
         event: 'initiate_checkout',
@@ -84,35 +74,7 @@ const handleHotmartCheckout = (event) => {
         }
       });
     }
-
-    // 3. Capturar cookies _fbp e _fbc
-    const fbp = getCookie('_fbp');
-    const fbc = getCookie('_fbc');
-
-    let sckValue = '';
-    if (fbp) {
-      sckValue += '_fbp=' + fbp;
-    }
-    if (fbc) {
-      sckValue += (sckValue ? '&' : '') + '_fbc=' + fbc;
-    }
-
-    // 4. Montar a URL final
-    let finalUrl = 'https://pay.hotmart.com/I101398692S'; // Seu link base
-    try {
-      const urlObj = new URL(finalUrl );
-      if (sckValue) {
-        urlObj.searchParams.set('sck', sckValue);
-      }
-      finalUrl = urlObj.toString();
-    } catch (e) {
-      console.error("Erro ao construir a URL da Hotmart:", e);
-    }
-
-    // 5. Redirecionar o usuário para a URL final e correta
-    window.location.href = finalUrl;
   };
-
 
   return (
     <div className="min-h-screen bg-white">
@@ -672,7 +634,7 @@ const handleHotmartCheckout = (event) => {
                   target="_blank" 
                   rel="noopener noreferrer"
                   id="botao-compra-hotmart" 
-                  onClick={(e) => handleHotmartCheckout(e)}
+                  onClick={handleHotmartCheckout}
                   className="w-full bg-green-600 hover:bg-green-700 text-white font-black py-4 sm:py-6 px-4 sm:px-6 rounded-lg text-base sm:text-xl transform hover:scale-105 transition-all duration-200 shadow-2xl inline-flex items-center justify-center gap-2 sm:gap-3"
                 >
                   <DollarSign className="w-4 h-4 sm:w-6 sm:h-6" />
