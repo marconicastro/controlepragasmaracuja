@@ -56,75 +56,24 @@ export default function App() {
     document.getElementById('checkout').scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleHotmartCheckout = (event) => {
-  // 1. Previne o comportamento padrão do link para nos dar controle total.
-  event.preventDefault();
-
-  // 2. Define a URL base da Hotmart.
-  const baseUrl = 'https://pay.hotmart.com/I101398692S';
-
-  // 3. Função interna para ler um cookie de forma segura.
-  const getCookieValue = (name ) => {
-    if (typeof document === 'undefined') return null;
-    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-    return match ? match[2] : null;
-  };
-
-  // 4. Captura todos os cookies necessários.
-  const fbp = getCookieValue('_fbp');
-  const fbc = getCookieValue('_fbc');
-  const gaCookie = getCookieValue('_ga');
-
-  // 5. Extrai o Client ID do cookie _ga.
-  const clientId = gaCookie ? gaCookie.split('.').slice(2).join('.') : null;
-
-  // 6. Usa a API URLSearchParams para construir os parâmetros de forma segura.
-  const params = new URLSearchParams();
-
-  // Adiciona o Client ID se ele existir.
-  if (clientId) {
-    params.set('cid', clientId);
-  }
-
-  // Monta o valor do sck separadamente.
-  const sckParams = new URLSearchParams();
-  if (fbp) {
-    sckParams.set('_fbp', fbp);
-  }
-  if (fbc) {
-    sckParams.set('_fbc', fbc);
-  }
-  const sckValue = sckParams.toString();
-
-  // Adiciona o sck se ele tiver algum valor.
-  if (sckValue) {
-    params.set('sck', sckValue);
-  }
-
-  // 7. Constrói a URL final.
-  // Verifica se há parâmetros para adicionar, para não terminar com um '?' desnecessário.
-  const finalUrl = params.toString() ? `${baseUrl}?${params.toString()}` : baseUrl;
-
-  // 8. Dispara o evento para o dataLayer.
-  if (typeof window !== 'undefined' && window.dataLayer) {
-    window.dataLayer.push({
-      event: 'initiate_checkout',
-      ecommerce: {
-        currency: 'BRL',
-        value: 39.90,
-        items: [{
-          item_id: '6080425',
-          item_name: 'Sistema de Controle de Trips - Maracujá',
-          category: 'Agricultura',
-          quantity: 1,
-          price: 39.90
-        }]
-      }
-    });
-  }
-
-  // 9. Redireciona o usuário para a URL construída.
-  window.location.href = finalUrl;
+  const handleHotmartCheckout = () => {
+    // Enviar evento initiate_checkout para o dataLayer
+    if (typeof window !== 'undefined' && window.dataLayer) {
+      window.dataLayer.push({
+        event: 'initiate_checkout',
+        ecommerce: {
+          currency: 'BRL',
+          value: 39.90,
+          items: [{
+            item_id: '6080425',
+            item_name: 'Sistema de Controle de Trips - Maracujá',
+            category: 'Agricultura',
+            quantity: 1,
+            price: 39.90
+          }]
+        }
+      });
+    }
   };
 
   return (
@@ -685,7 +634,7 @@ export default function App() {
                   target="_blank" 
                   rel="noopener noreferrer"
                   id="botao-compra-hotmart" 
-                  onClick={(e) => handleHotmartCheckout(e)}
+                  onClick={handleHotmartCheckout}
                   className="w-full bg-green-600 hover:bg-green-700 text-white font-black py-4 sm:py-6 px-4 sm:px-6 rounded-lg text-base sm:text-xl transform hover:scale-105 transition-all duration-200 shadow-2xl inline-flex items-center justify-center gap-2 sm:gap-3"
                 >
                   <DollarSign className="w-4 h-4 sm:w-6 sm:h-6" />
