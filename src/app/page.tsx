@@ -52,84 +52,67 @@ export default function App() {
     return () => clearTimeout(viewContentTimer);
   }, []);
 
-  const getCookie = useCallback((name: string): string | null => {
-    if (typeof document === 'undefined') return null;
-    
-    try {
-      return document.cookie
-        .split('; ')
-        .find(row => row.startsWith(name + '='))
-        ?.split('=')[1] || null;
-    } catch (error) {
-      console.warn('Erro ao capturar cookie:', error);
-      return null;
-    }
-  }, []);
-
   const scrollToCheckout = () => {
-    document.getElementById('checkout')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('checkout').scrollIntoView({ behavior: 'smooth' });
   };
 
-  // Sua função getCookie original
   function getCookie(name) {
     if (typeof document === 'undefined') return null; // Garante que só roda no navegador
     const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
     return match ? match[2] : null;
   }
 
-  // Sua função handleHotmartCheckout com os ajustes
-  const handleHotmartCheckout = (event) => { // AJUSTE 1: Recebe o 'event'
-  // AJUSTE 2: Impede a navegação imediata para assumir o controle
-  event.preventDefault();
+  // CÓDIGO PARA SUBSTITUIR A FUNÇÃO ANTIGA
+const handleHotmartCheckout = (event) => {
+    // 1. IMPEDE o link de navegar para o href original imediatamente
+    event.preventDefault();
 
-  // 1. Enviar evento initiate_checkout para o dataLayer (mantém o que já existe)
-  if (typeof window !== 'undefined' && window.dataLayer) {
-    window.dataLayer.push({
-      event: 'initiate_checkout',
-      ecommerce: {
-        currency: 'BRL',
-        value: 39.90,
-        items: [{
-          item_id: '6080425',
-          item_name: 'Sistema de Controle de Trips - Maracujá',
-          category: 'Agricultura',
-          quantity: 1,
-          price: 39.90
-        }]
+    // 2. Enviar evento initiate_checkout para o dataLayer (mantém o que já existe)
+    if (typeof window !== 'undefined' && window.dataLayer) {
+      window.dataLayer.push({
+        event: 'initiate_checkout',
+        ecommerce: {
+          currency: 'BRL',
+          value: 39.90,
+          items: [{
+            item_id: '6080425',
+            item_name: 'Sistema de Controle de Trips - Maracujá',
+            category: 'Agricultura',
+            quantity: 1,
+            price: 39.90
+          }]
+        }
+      });
+    }
+
+    // 3. Capturar cookies _fbp e _fbc
+    const fbp = getCookie('_fbp');
+    const fbc = getCookie('_fbc');
+
+    let sckValue = '';
+    if (fbp) {
+      sckValue += '_fbp=' + fbp;
+    }
+    if (fbc) {
+      sckValue += (sckValue ? '&' : '') + '_fbc=' + fbc;
+    }
+
+    // 4. Montar a URL final
+    let finalUrl = 'https://pay.hotmart.com/I101398692S'; // Seu link base
+    try {
+      const urlObj = new URL(finalUrl );
+      if (sckValue) {
+        urlObj.searchParams.set('sck', sckValue);
       }
-    });
-  }
-
-  // 2. Capturar cookies _fbp e _fbc
-  const fbp = getCookie('_fbp');
-  const fbc = getCookie('_fbc');
-
-  let sckValue = '';
-  if (fbp) {
-    sckValue += '_fbp=' + fbp;
-  }
-  if (fbc) {
-    sckValue += (sckValue ? '&' : '') + '_fbc=' + fbc;
-  }
-
-  // 3. Obter o link original da Hotmart do botão
-  const hotmartButton = document.getElementById('botao-compra-hotmart');
-  if (hotmartButton && hotmartButton.href) {
-    let hotmartLink = new URL(hotmartButton.href);
-
-    // 4. Adicionar o parâmetro sck ao link
-    if (sckValue) {
-      hotmartLink.searchParams.set('sck', sckValue);
+      finalUrl = urlObj.toString();
+    } catch (e) {
+      console.error("Erro ao construir a URL da Hotmart:", e);
     }
 
-    // 5. Redirecionar o usuário para o link modificado
-    window.location.href = hotmartLink.toString();
-    } else {
-      console.error('Botão da Hotmart não encontrado ou sem href.');
-      // Fallback: se o botão não for encontrado, redireciona para o link padrão
-      window.location.href = 'https://pay.hotmart.com/I101398692S'; // Coloque o link padrão aqui
-    }
+    // 5. Redirecionar o usuário para a URL final e correta
+    window.location.href = finalUrl;
   };
+
 
   return (
     <div className="min-h-screen bg-white">
@@ -689,7 +672,7 @@ export default function App() {
                   target="_blank" 
                   rel="noopener noreferrer"
                   id="botao-compra-hotmart" 
-                  onClick={(e ) => handleHotmartCheckout(e)}
+                  onClick={(e) => handleHotmartCheckout(e)}
                   className="w-full bg-green-600 hover:bg-green-700 text-white font-black py-4 sm:py-6 px-4 sm:px-6 rounded-lg text-base sm:text-xl transform hover:scale-105 transition-all duration-200 shadow-2xl inline-flex items-center justify-center gap-2 sm:gap-3"
                 >
                   <DollarSign className="w-4 h-4 sm:w-6 sm:h-6" />
