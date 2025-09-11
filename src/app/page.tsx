@@ -56,24 +56,69 @@ export default function App() {
     document.getElementById('checkout').scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleHotmartCheckout = () => {
-    // Enviar evento initiate_checkout para o dataLayer
+  function getCookie(name) {
+    if (typeof document === 'undefined') return null;
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? match[2] : null;
+  }
+
+  // Função principal de checkout
+  const handleHotmartCheckout = (event) => {
+    // 1. Previne o comportamento padrão do link para nos dar controle total.
+    event.preventDefault();
+
+    // 2. Captura todos os cookies necessários.
+    const fbp = getCookie('_fbp');
+    const fbc = getCookie('_fbc');
+    const gaCookie = getCookie('_ga');
+
+    // 3. Extrai o Client ID do cookie _ga.
+    const clientId = gaCookie ? gaCookie.split('.').slice(2).join('.') : null;
+
+    // 4. Pega a URL base do botão.
+    const baseUrl = 'https://pay.hotmart.com/I101398692S';
+    const finalUrl = new URL(baseUrl );
+
+    // 5. Adiciona o Client ID como um parâmetro.
+    if (clientId) {
+      finalUrl.searchParams.set('cid', clientId);
+    }
+
+    // 6. Monta o valor do sck separadamente.
+    const sckParams = new URLSearchParams();
+    if (fbp) {
+      sckParams.set('_fbp', fbp);
+    }
+    if (fbc) {
+      sckParams.set('_fbc', fbc);
+    }
+    const sckValue = sckParams.toString();
+
+    // Adiciona o sck se ele tiver algum valor.
+    if (sckValue) {
+      finalUrl.searchParams.set('sck', sckValue);
+    }
+
+    // 7. Dispara o evento para o dataLayer.
     if (typeof window !== 'undefined' && window.dataLayer) {
       window.dataLayer.push({
         event: 'initiate_checkout',
         ecommerce: {
-          currency: 'BRL',
-          value: 39.90,
-          items: [{
-            item_id: '6080425',
-            item_name: 'Sistema de Controle de Trips - Maracujá',
-            category: 'Agricultura',
-            quantity: 1,
-            price: 39.90
-          }]
-        }
+            currency: 'BRL',
+            value: 39.90,
+            items: [{
+              item_id: '6080425',
+              item_name: 'Sistema de Controle de Trips - Maracujá',
+              category: 'Agricultura',
+              quantity: 1,
+              price: 39.90
+            }]
+          }
       });
     }
+
+    // 8. Redireciona o usuário para a URL final construída.
+    window.location.href = finalUrl.toString();
   };
 
   return (
