@@ -35,7 +35,30 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <head>
-
+        {/* ================================================================== */}
+        {/* SCRIPT PARA CRIAR O COOKIE _fbc ANTES DO GTM */}
+        {/* ================================================================== */}
+        <Script
+          id="fbc-cookie-setter"
+          strategy="beforeInteractive" // <-- A MÁGICA ACONTECE AQUI
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var params = new URLSearchParams(window.location.search);
+                  var fbclid = params.get('fbclid');
+                  if (fbclid) {
+                    var creationTime = new Date().getTime();
+                    var fbcCookie = 'fb.1.' + creationTime + '.' + fbclid;
+                    document.cookie = '_fbc=' + fbcCookie + ';path=/;max-age=7776000'; // 90 dias
+                  }
+                } catch (e) {
+                  console.error('FBC Cookie Setter Error:', e);
+                }
+              })();
+            `,
+          }}
+        />
 
         {/* SCRIPT DE PROTEÇÃO CONTRA CÓPIA E SELEÇÃO */}
         <Script
