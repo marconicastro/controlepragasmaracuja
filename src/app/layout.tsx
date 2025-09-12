@@ -36,6 +36,7 @@ export default function RootLayout({
     <html lang="pt-BR" suppressHydrationWarning>
       <head>
 
+
         {/* SCRIPT DE PROTEÇÃO CONTRA CÓPIA E SELEÇÃO */}
         <Script
           id="protection-script"
